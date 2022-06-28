@@ -1,0 +1,25 @@
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_EXTENSIONS NO)
+
+find_package(Qt5 REQUIRED COMPONENTS Gui)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(TILED_SOURCES
+	commandlineparser.cpp
+	main.cpp
+)
+
+set(LIBTILED_HEADERS
+	commandlineparser.h
+)
+
+add_executable(tiled ${TILED_SOURCES} ${TILED_HEADERS})
+target_link_libraries(tiled tilededitor)
+
+install(TARGETS tiled
+	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
